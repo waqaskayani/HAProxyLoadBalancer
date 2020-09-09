@@ -4,6 +4,7 @@
 2. Flask Application
 3. Setting up HAProxy
 4. Running script and testing
+5. Troubleshooting
 
 ## **1. Introduction**
 
