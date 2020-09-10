@@ -10,8 +10,8 @@ class ContainerApp(object):
         print(dedent("""
         Welcome to the application!
 
-        This application will create simple flask application containers and will
-        balance the load between them using HAProxy. 
+        This application will create simple flask application containers based on CPU usage
+        and will balance the load between them using HAProxy. 
         """))
 
     def add_container(self):
@@ -38,11 +38,10 @@ if __name__ == "__main__":
     curr_containers = 0
 
     while True:        
-        # total_containers = int(input("Specify N number of containers: "))
         cpu_usage = cpu_percent(interval=1)
-        total_containers = cpu_usage // 10
+        total_containers = (int(cpu_usage // 10) + 1) if int(cpu_usage // 10)==0 else int(cpu_usage // 10)
         print(f"Current CPU usage: {cpu_usage}")
-        print(f"Number of containers to be created: {total_containers}")
+        print(f"Number of containers will be: {total_containers}")
         input("Press any key to start")
 
         if curr_containers < total_containers:
